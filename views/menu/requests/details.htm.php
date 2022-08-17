@@ -1,10 +1,10 @@
 <?php
 /**
- * @var BackOfficeRequest $request
+ * @var UserRequest $request
  */
 
-use ErasmusHelper\Controllers\Router;
-use ErasmusHelper\Models\BackOfficeRequest;
+use PConfigurator\Controllers\Router;
+use PConfigurator\Models\UserRequest;
 
 ?>
 <div class="box col-12">

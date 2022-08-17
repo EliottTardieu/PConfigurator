@@ -1,6 +1,6 @@
 <?php
 
-namespace ErasmusHelper\Core;
+namespace PConfigurator\Core;
 
 use Kreait\Firebase\Auth\UserRecord;
 use Kreait\Firebase\Contract\Auth;
@@ -15,7 +15,7 @@ class DBConf {
     public function __construct() {
         $factory = (new Factory)
             ->withServiceAccount(APPLICATION_PATH . '/firebase_adminSDK.json')
-            ->withDatabaseUri('https://erasmus-helper-default-rtdb.europe-west1.firebasedatabase.app/');
+            ->withDatabaseUri('https://pconfigurator-e88e2-default-rtdb.europe-west1.firebasedatabase.app/');
         $this->database = $factory->createDatabase();
         $this->auth = $factory->createAuth();
     }

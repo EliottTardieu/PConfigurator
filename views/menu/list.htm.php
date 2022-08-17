@@ -10,8 +10,8 @@
  * @var BackOfficeRequest[] $requests
  */
 
-use ErasmusHelper\App;
-use ErasmusHelper\Models\BackOfficeRequest;
+use PConfigurator\App;
+use PConfigurator\Models\BackOfficeRequest;
 
 ?>
 <div class="row">

@@ -1,13 +1,10 @@
 <?php
 
-namespace ErasmusHelper\Controllers;
+namespace PConfigurator\Controllers;
 
 use AgileBundle\Utils\Request;
-use ErasmusHelper\App;
+use PConfigurator\App;
 use JetBrains\PhpStorm\NoReturn;
-use Kreait\Firebase\Exception\AuthException;
-use Kreait\Firebase\Exception\FirebaseException;
-use Lcobucci\JWT\Exception;
 
 class AuthController extends Controller {
 

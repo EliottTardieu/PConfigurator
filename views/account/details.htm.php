@@ -1,7 +1,7 @@
 <?php
 
-use ErasmusHelper\App;
-use ErasmusHelper\Controllers\Router;
+use PConfigurator\App;
+use PConfigurator\Controllers\Router;
 use Kreait\Firebase\Exception\AuthException;
 use Kreait\Firebase\Exception\FirebaseException;
 

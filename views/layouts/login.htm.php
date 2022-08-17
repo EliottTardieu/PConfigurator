@@ -1,7 +1,7 @@
 <?php
 /** @var $content */
 
-use ErasmusHelper\Controllers\Router;
+use PConfigurator\Controllers\Router;
 
 ?>
 

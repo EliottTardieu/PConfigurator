@@ -1,15 +1,15 @@
 <?php
 
-namespace ErasmusHelper\Controllers;
+namespace PConfigurator\Controllers;
 
 
 use AgileBundle\Utils\Dbg;
 use AgileBundle\Utils\Request;
-use ErasmusHelper\App;
+use PConfigurator\App;
 use Kreait\Firebase\Exception\AuthException;
 use Kreait\Firebase\Exception\FirebaseException;
 
-class AccountController extends UniModsBackOfficeController {
+class AccountController extends ConfiguratorController {
 
     public function edit() {
         $this->render("account.details");

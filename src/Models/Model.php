@@ -1,10 +1,10 @@
 <?php
 
-namespace ErasmusHelper\Models;
+namespace PConfigurator\Models;
 
 use AgileBundle\Utils\Dbg;
-use ErasmusHelper\App;
-use ErasmusHelper\Core\DBConf;
+use PConfigurator\App;
+use PConfigurator\Core\DBConf;
 use Kreait\Firebase\Exception\DatabaseException;
 
 abstract class Model

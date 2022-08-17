@@ -1,6 +1,6 @@
 <?php
 
-use ErasmusHelper\Controllers\Router;
+use PConfigurator\Controllers\Router;
 
 ?>
 <div id="login">

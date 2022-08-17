@@ -1,15 +1,15 @@
 <?php
 
-namespace ErasmusHelper\Controllers;
+namespace PConfigurator\Controllers;
 
 use AgileBundle\Utils\Request;
-use ErasmusHelper\App;
-use ErasmusHelper\Models\Faculty;
-use ErasmusHelper\Models\User;
+use PConfigurator\App;
+use ErasmusHelper\Models\Component;
+use PConfigurator\Models\User;
 use JetBrains\PhpStorm\NoReturn;
 use Kreait\Firebase\Exception\DatabaseException;
 
-class UserController extends UniModsBackOfficeController {
+class UserController extends ConfiguratorController {
 
     protected string $title = "Users";
 
@@ -35,7 +35,7 @@ class UserController extends UniModsBackOfficeController {
                 $users = array();
                 $u = User::getAll();
                 foreach ($u as $user) {
-                    if (Faculty::select(["id" => $user->faculty_arriving_id])->city_id == $city->id || Faculty::select(["id" => $user->faculty_origin_id])->city_id == $city->id) {
+                    if (Component::select(["id" => $user->faculty_arriving_id])->city_id == $city->id || Component::select(["id" => $user->faculty_origin_id])->city_id == $city->id) {
                         $users[] = $user;
                     }
                 }
@@ -45,7 +45,7 @@ class UserController extends UniModsBackOfficeController {
                 $users = array();
                 $u = User::getAll();
                 foreach ($u as $user) {
-                    if (Faculty::select(["id" => $user->faculty_arriving_id])->getCity()->country_id == $country->id || Faculty::select(["id" => $user->faculty_origin_id])->getCity()->country_id == $country->id) {
+                    if (Component::select(["id" => $user->faculty_arriving_id])->getCity()->country_id == $country->id || Component::select(["id" => $user->faculty_origin_id])->getCity()->country_id == $country->id) {
                         $users[] = $user;
                     }
                 }
@@ -60,7 +60,7 @@ class UserController extends UniModsBackOfficeController {
     }
 
     public function edit($id) {
-        $this->render("users.details", ["id" => $id, "faculties" => Faculty::getAll()]);
+        $this->render("users.details", ["id" => $id, "faculties" => Component::getAll()]);
     }
 
     #[NoReturn] public function editPost($id) {

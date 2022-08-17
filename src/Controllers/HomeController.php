@@ -1,6 +1,6 @@
 <?php
 
-namespace ErasmusHelper\Controllers;
+namespace PConfigurator\Controllers;
 
 class HomeController extends Controller {
 

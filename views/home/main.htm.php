@@ -1,4 +1,4 @@
-<?php use ErasmusHelper\Controllers\Router; ?>
+<?php use PConfigurator\Controllers\Router; ?>
 <div id="homepage" class="container-fluid px-xl-5" xmlns:mailto="http://www.w3.org/1999/xhtml">
     <div class="row pt-xl-0 pt-3 justify-content-center">
         <div class="col-auto text-center"><h4 class="fancy-font">About SumsEra</h4></div>

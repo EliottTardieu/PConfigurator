@@ -1,9 +1,9 @@
 <?php
 
-namespace ErasmusHelper\Controllers;
+namespace PConfigurator\Controllers;
 
 use AgileBundle\Controllers\AbstractFrontController;
-use ErasmusHelper\App;
+use PConfigurator\App;
 
 abstract class Controller extends AbstractFrontController {
 

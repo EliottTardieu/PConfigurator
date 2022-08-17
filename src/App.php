@@ -1,11 +1,11 @@
 <?php
 
-namespace ErasmusHelper;
+namespace PConfigurator;
 
 use AgileBundle\Utils\Dbg;
-use ErasmusHelper\Controllers\AuthController;
-use ErasmusHelper\Core\Auth;
-use ErasmusHelper\Core\DBConf;
+use PConfigurator\Controllers\AuthController;
+use PConfigurator\Core\Auth;
+use PConfigurator\Core\DBConf;
 use Exception;
 
 class App {

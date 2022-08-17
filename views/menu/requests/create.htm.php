@@ -1,6 +1,6 @@
 <?php
 
-use ErasmusHelper\Controllers\Router;
+use PConfigurator\Controllers\Router;
 ?>
 <div class="box col-12">
     <div class="box-header">

@@ -1,17 +1,15 @@
 <?php
 
-namespace ErasmusHelper\Controllers;
+namespace PConfigurator\Controllers;
 
-use AgileBundle\Utils\Dbg;
 use AgileBundle\Utils\Request;
-use ErasmusHelper\Models\BackOfficeRequest;
-use ErasmusHelper\Models\StaffModel;
-use ErasmusHelper\Models\User;
+use PConfigurator\Models\UserRequest;
+use PConfigurator\Models\User;
 use Exception;
 use JetBrains\PhpStorm\NoReturn;
 use Kreait\Firebase\Exception\DatabaseException;
 
-class ModalController extends UniModsBackOfficeController {
+class ModalController extends ConfiguratorController {
 
     protected bool $async = true;
 
@@ -21,14 +19,14 @@ class ModalController extends UniModsBackOfficeController {
             foreach ($_POST as $user) {
                 $users[] = new User(json_decode($user, true));
             }
-            $this->render("users.search", ["users" => $users]);
+            $this->render("components.search", ["users" => $users]);
         } catch (Exception $e) {
             $this->redirect(Router::route("/"), ["error" => $e]);
         }
     }
 
     public function importExcel() {
-        $this->render("users.excel");
+        $this->render("components.excel");
     }
 
     #[NoReturn] public function importExcelPost() {
@@ -68,7 +66,7 @@ class ModalController extends UniModsBackOfficeController {
     public function requestDetails() {
         try {
             $this->requirePrivileges(ADMIN_PRIVILEGES);
-            $request = BackOfficeRequest::select(["id" => array_key_first($_POST)]);
+            $request = UserRequest::select(["id" => array_key_first($_POST)]);
             if ($request != null && $request->exists()) {
                 $this->render("menu.requests.details", ["request" => $request]);
             }

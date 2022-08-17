@@ -1,27 +1,25 @@
 <?php
 
-namespace ErasmusHelper\Controllers;
+namespace PConfigurator\Controllers;
 
 use AgileBundle\Utils\Request;
 use DateTime;
-use ErasmusHelper\App;
-use ErasmusHelper\Models\BackOfficeRequest;
-use ErasmusHelper\Models\CityModerator;
-use ErasmusHelper\Models\CountryModerator;
-use ErasmusHelper\Models\Faculty;
-use ErasmusHelper\Models\UniModerator;
-use ErasmusHelper\Models\User;
-use Exception;
+use PConfigurator\App;
+use PConfigurator\Models\UserRequest;
+use PConfigurator\Models\Component;
+use PConfigurator\Models\User;
 use JetBrains\PhpStorm\NoReturn;
 use Kreait\Firebase\Exception\AuthException;
 use Kreait\Firebase\Exception\DatabaseException;
 use Kreait\Firebase\Exception\FirebaseException;
 
-class MenuController extends UniModsBackOfficeController {
+class MenuController extends ConfiguratorController {
 
     protected string $title = "Menu";
 
     public function displayAll() {
+        $this->render("generic.404");
+        return;
         try {
             $faculty = App::getInstance()->auth->getFaculty();
             $city = App::getInstance()->auth->getCity();
@@ -41,9 +39,9 @@ class MenuController extends UniModsBackOfficeController {
                 $users_origin = array();
                 $users = User::getAll();
                 foreach ($users as $user) {
-                    if (Faculty::select(["id" => $user->faculty_arriving_id])->city_id == $city->id) {
+                    if (Component::select(["id" => $user->faculty_arriving_id])->city_id == $city->id) {
                         $users_arriving[] = $user;
-                    } elseif (Faculty::select(["id" => $user->faculty_origin_id])->city_id == $city->id) {
+                    } elseif (Component::select(["id" => $user->faculty_origin_id])->city_id == $city->id) {
                         $users_origin[] = $user;
                     }
                 }
@@ -59,9 +57,9 @@ class MenuController extends UniModsBackOfficeController {
                 $users_origin = array();
                 $users = User::getAll();
                 foreach ($users as $user) {
-                    if (Faculty::select(["id" => $user->faculty_arriving_id])->getCity()->country_id == $country->id) {
+                    if (Component::select(["id" => $user->faculty_arriving_id])->getCity()->country_id == $country->id) {
                         $users_arriving[] = $user;
-                    } elseif (Faculty::select(["id" => $user->faculty_origin_id])->getCity()->country_id == $country->id) {
+                    } elseif (Component::select(["id" => $user->faculty_origin_id])->getCity()->country_id == $country->id) {
                         $users_origin[] = $user;
                     }
                 }
@@ -89,7 +87,7 @@ class MenuController extends UniModsBackOfficeController {
     #[NoReturn] public function requestCreate() {
         try {
             if (Request::valuePost("title") && Request::valuePost("content")) {
-                $request = new BackOfficeRequest();
+                $request = new UserRequest();
                 $request->id = App::UUIDGenerator();
                 $request->date = new DateTime();
                 $request->content = Request::valuePost("content");

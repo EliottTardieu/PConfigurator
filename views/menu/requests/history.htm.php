@@ -1,9 +1,9 @@
 <?php
 /**
- * @var BackOfficeRequest[] $requests
+ * @var UserRequest[] $requests
  */
 
-use ErasmusHelper\Models\BackOfficeRequest;
+use PConfigurator\Models\UserRequest;
 
 ?>
 <div class="box col-12">
