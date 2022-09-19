@@ -30,8 +30,10 @@ use PConfigurator\Controllers\Router;
             <a id="main-logo" href="<?= Router::route("/") ?>"><img src="<?= Router::resource("images", "logo.png") ?>"></a>
             <a <?= strpos($_SERVER["REQUEST_URI"], "menu") ? "class='active'" : "" ?>
                     href="<?= Router::route("menu") ?>"><i class="fas fa-cogs r"></i>Menu</a>
-            <a <?= strpos($_SERVER["REQUEST_URI"], "faculties") ? "class='active'" : "" ?>
-                    href="<?= Router::route("components") ?>"><i class="fas fa-solid fa-microchip"></i>Components</a>
+            <a <?= strpos($_SERVER["REQUEST_URI"], "components") ? "class='active'" : "" ?>
+                    href="<?= Router::route("components") ?>"><i class="fas fa-solid fa-microchip r"></i>Components</a>
+            <a <?= strpos($_SERVER["REQUEST_URI"], "apis") ? "class='active'" : "" ?>
+                    href="<?= Router::route("apis") ?>"><i class="fas fa-solid fa-filter r"></i>Apis</a>
         </div>
         <div class="header-menu">
             <?php

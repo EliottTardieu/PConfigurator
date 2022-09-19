@@ -3,6 +3,8 @@
 namespace PConfigurator\Controllers;
 
 use AgileBundle\Utils\Request;
+use PConfigurator\Models\Api;
+use PConfigurator\Models\Component;
 use PConfigurator\Models\UserRequest;
 use PConfigurator\Models\User;
 use Exception;
@@ -20,6 +22,30 @@ class ModalController extends ConfiguratorController {
                 $users[] = new User(json_decode($user, true));
             }
             $this->render("components.search", ["users" => $users]);
+        } catch (Exception $e) {
+            $this->redirect(Router::route("/"), ["error" => $e]);
+        }
+    }
+
+    public function searchComponents() {
+        try {
+            $components = array();
+            foreach ($_POST as $component) {
+                $components[] = new Component(json_decode($component, true));
+            }
+            $this->render("components.search", ["components" => $components]);
+        } catch (Exception $e) {
+            $this->redirect(Router::route("/"), ["error" => $e]);
+        }
+    }
+
+    public function searchApis() {
+        try {
+            $apis = array();
+            foreach ($_POST as $api) {
+                $apis[] = new Api(json_decode($api, true));
+            }
+            $this->render("apis.search", ["apis" => $apis]);
         } catch (Exception $e) {
             $this->redirect(Router::route("/"), ["error" => $e]);
         }
@@ -77,7 +103,7 @@ class ModalController extends ConfiguratorController {
 
     public function requestsHistory() {
         $this->requirePrivileges(ADMIN_PRIVILEGES);
-        $this->render("menu.requests.history", ["requests" => BackOfficeRequest::getAll()]);
+        $this->render("menu.requests.history", ["requests" => UserRequest::getAll()]);
     }
 
 }

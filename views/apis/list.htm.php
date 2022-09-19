@@ -1,36 +1,34 @@
 <?php
-/** @var Component[] $components */
+/** @var Api[] $apis */
 
 use PConfigurator\Controllers\Router;
-use PConfigurator\Models\Component;
+use PConfigurator\Models\Api;
 
 ?>
 <div class="flex-column">
     <div class="row no-padding col-6">
         <div class="box-content">
-            <label class="m-1" for="searchBar">Enter a component name:</label>
+            <label class="m-1" for="searchBar">Enter an API name:</label>
             <input id="searchBar" type="text" class="input m-auto" />
         </div>
     </div>
     <div class="row">
-        <div class="box no-padding col-8">
+        <div class="box no-padding col-12">
             <div class="box-content">
                 <div class="table-wrapper">
-                    <table class="table <?= empty($components) ? 'empty' : '' ?>">
+                    <table class="table <?= empty($apis) ? 'empty' : '' ?>">
                         <tr>
                             <th>Name</th>
-                            <th>Type</th>
-                            <th>Manufacturer</th>
-                            <th><a class="button" href="<?= Router::route('component.create.page') ?>"><i class="far fa-eye r"></i>Create a Component</a></th>
+                            <th>URL</th>
+                            <th><a class="button" href="<?= Router::route('api.create.page') ?>"><i class="far fa-eye r"></i>Add an API</a></th>
                         </tr>
                         <?php
-                        if(!empty($components)) {
-                            foreach ($components as $component): ?>
-                                <tr bgcolor="<?= $component->obsolete != 0 ? "lightgrey" : "white"; ?>">
-                                    <td><?= $component->name; ?></td>
-                                    <td><?= $component->type; ?></td>
-                                    <td><?= $component->manufacturer; ?></td>
-                                    <td><a class="button" href="<?= Router::route('component', ["id" => $component->id]) ?>"><i class="far fa-eye r"></i>Details</a></td>
+                        if(!empty($apis)) {
+                            foreach ($apis as $api): ?>
+                                <tr bgcolor="<?= $api->valid == 0 ? "lightgrey" : "white"; ?>">
+                                    <td><?= $api->name; ?></td>
+                                    <td><?= $api->url; ?></td>
+                                    <td><a class="button" href="<?= Router::route('api', ["id" => $api->id]) ?>"><i class="far fa-eye r"></i>Details</a></td>
                                 </tr>
                             <?php endforeach;
                         } ?>
@@ -49,7 +47,7 @@ use PConfigurator\Models\Component;
     });
 
     document.getElementById("searchBar").addEventListener('change', updateList);
-    let data = <?php echo json_encode($components); ?>;
+    let data = <?php echo json_encode($apis); ?>;
 
     function updateList() {
         if(!(this.value === "")) {
@@ -64,7 +62,7 @@ use PConfigurator\Models\Component;
                     }
                 }
                 let searchModal = new Modal({
-                    view_url: '<?= Router::route("components.search")?>',
+                    view_url: '<?= Router::route("apis.search")?>',
                     view_data: toReturn,
                     title: 'Search Result'
                 });

@@ -44,12 +44,22 @@ class Router extends AbstractRouter
             'user.ability'                  => ["GET", "/user/ability/{id}", [UserController::class, "changeAbility"]],
             'user.edit'                     => ["POST", "/user/edit/{id}", [UserController::class, "editPost"]],
             'user'                          => ["GET", "/user/{id}", [UserController::class, "edit"]],
-            'components'                     => ["GET", "/components", [ComponentsController::class, "displayAll"]],
-            'component.create.page'           => ["GET", "/component/create", [ComponentsController::class, "create"]],
-            'component.create'                => ["POST", "/component/new", [ComponentsController::class, "createPost"]],
-            'component.delete'                => ["GET", "/component/delete/{id}", [ComponentsController::class, "delete"]],
-            'component.edit'                  => ["POST", "/component/edit/{id}", [ComponentsController::class, "editPost"]],
-            'component'                       => ["GET", "/component/{id}", [ComponentsController::class, "edit"]]
+            'components'                    => ["GET", "/components", [ComponentsController::class, "displayAll"]],
+            'components.search'             => ["POST", "/components/search", [ModalController::class, "searchComponents"]],
+            'component.create.page'         => ["GET", "/component/create", [ComponentsController::class, "create"]],
+            'component.create'              => ["POST", "/component/new", [ComponentsController::class, "createPost"]],
+            'component.delete'              => ["GET", "/component/delete/{id}", [ComponentsController::class, "delete"]],
+            'component.edit'                => ["POST", "/component/edit/{id}", [ComponentsController::class, "editPost"]],
+            'component.ability'             => ["GET", "/component/ability/{id}", [ComponentsController::class, "changeAbility"]],
+            'component'                     => ["GET", "/component/{id}", [ComponentsController::class, "edit"]],
+            'apis'                          => ["GET", "/apis", [ApiController::class, "displayAll"]],
+            'apis.search'                   => ["POST", "/apis/search", [ModalController::class, "searchApis"]],
+            'api.create.page'               => ["GET", "/api/create", [ApiController::class, "create"]],
+            'api.create'                    => ["POST", "/api/new", [ApiController::class, "createPost"]],
+            'api.delete'                    => ["GET", "/api/delete/{id}", [ApiController::class, "delete"]],
+            'api.edit'                      => ["POST", "/api/edit/{id}", [ApiController::class, "editPost"]],
+            'api.ability'                   => ["GET", "/api/ability/{id}", [ApiController::class, "changeAbility"]],
+            'api'                           => ["GET", "/api/{id}", [ApiController::class, "edit"]]
         ];
     }
 }

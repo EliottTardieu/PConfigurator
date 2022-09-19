@@ -1,10 +1,10 @@
 <?php
 /**
  * @var int $id
- * @var Component[] $faculties
  */
 
 
+use PConfigurator\App;
 use PConfigurator\Controllers\Router;
 use PConfigurator\Models\Component;
 use PConfigurator\Models\User;
@@ -16,40 +16,37 @@ use PConfigurator\Models\User;
             <div class="box col-12 wr">
                 <div class="box-header">
                     <span class="box-title"><?php
-                        $user = User::select(["id" => $id]);
-                        echo $user->firstname . " " . $user->lastname;
+                        $component = Component::select(["id" => $id]);
+                        echo $component->manufacturer . " " . $component->name;
                         ?></span>
                 </div>
-                <form method="POST" action="<?= Router::route('user.edit', ["id" => $user->id]) ?>">
+                <form method="POST" action="<?= Router::route('component.edit', ["id" => $component->id]) ?>">
                     <div class="box-content">
                         <div class="field">
                             <div class="label">Identifier</div>
-                            <input name="id" class="value" type="text" value="<?= $user->id; ?>"disabled/>
+                            <input name="id" class="value" type="text" value="<?= $component->id; ?>" disabled/>
                         </div>
                         <div class="field">
-                            <div class="label">Faculty of arrival</div>
-                            <select name="faculty_id" class="value">
-                                <option disabled>Select a faculty</option>
-                                <?php foreach ($faculties as $faculty): ?>
-                                    <option <?php if($faculty->id == $user->faculty_arriving_id){echo "selected";} ?> value="<?= $faculty->id; ?>"><?= $faculty->name; ?></option>
-                                <?php endforeach; ?>
-                            </select>
+                            <div class="label">Name</div>
+                            <input name="name" class="value" type="text" value="<?= $component->name; ?>" />
                         </div>
                         <div class="field">
-                            <div class="label">Validation level</div>
-                            <select name="validation_level" class="value">
-                                <option disabled>Select a level</option>
-                                <option <?php if($user->validation_level == 1){echo "selected";} ?> value="1">Student unknown</option>
-                                <option <?php if($user->validation_level == 2){echo "selected";} ?> value="2">Student this semester</option>
-                                <option <?php if($user->validation_level == 3){echo "selected";} ?> value="3">Student from previous semester(s)</option>
-                            </select>
+                            <div class="label">Type</div>
+                            <input name="type" class="value" type="text" value="<?= $component->type; ?>" />
+                        </div>
+                        <div class="field">
+                            <div class="label">Manufacturer</div>
+                            <input name="manufacturer" class="value" type="text" value="<?= $component->manufacturer; ?>" />
                         </div>
                     </div>
                     <div class="box-footer">
                         <div class="button-group">
-                            <a href="<?= Router::route('users') ?>" class="button">Cancel</a>
-                            <?php $ability = $user->isDisabled() ?>
-                            <a onclick="confirm('Confirm the user ability update request ?') ? window.location = '<?= Router::route('user.ability', ["id" => $user->id]) ?>' : void(0)" class="button <?= $ability ? "green" : "red" ?>"><?= $ability ? "Enable" : "Disable" ?></a>
+                            <a href="<?= Router::route('components') ?>" class="button">Cancel</a>
+                            <?php if(App::getInstance()->auth->getPrivilegeLevel() == ADMIN_PRIVILEGES) { ?>
+                                <a onclick="confirm('Confirm the component removal request ?') ? window.location = '<?= Router::route('component.delete', ["id" => $component->id]) ?>' : void(0)" class="button red">Delete</a>
+                            <?php }
+                            $ability = $component->obsolete != 0 ?>
+                            <a onclick="confirm('Confirm the component update request ?') ? window.location = '<?= Router::route('component.ability', ["id" => $component->id]) ?>' : void(0)" class="button <?= $ability ? "green" : "red" ?>"><?= $ability ? "Up to date" : "Obsolete" ?></a>
                             <button type="submit" class="button cta">Submit</button>
                         </div>
                     </div>
